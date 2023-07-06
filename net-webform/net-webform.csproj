@@ -219,6 +219,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202307060948541_create.cs" />
+    <Compile Include="Migrations\202307060948541_create.designer.cs">
+      <DependentUpon>202307060948541_create.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\System.cs" />
     <Compile Include="Models\SystemContext.cs" />
     <Compile Include="Models\Typology.cs" />
@@ -258,6 +263,11 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202307060948541_create.resx">
+      <DependentUpon>202307060948541_create.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
