@@ -46,7 +46,7 @@ namespace net_webform
                     ChangedDate = DateTime.Parse(txtChangedDate.Text),
                     Notes = txtNotes.Text,
                     //relazione one to many
-                    TypologyId = int.Parse(ddlTypology.SelectedValue) // Assegna l'ID della tipologia selezionata
+                    TypologyId = int.Parse(ddlTypology.SelectedValue) //assegna l'Id della typology selezionata
                 };
 
                 entities.Systems.Add(system);
@@ -74,6 +74,9 @@ namespace net_webform
             string changedDate = (row.FindControl("txtChangedDate") as TextBox).Text;
             string notes = (row.FindControl("txtNotes") as TextBox).Text;
 
+            DropDownList ddlTypology = row.FindControl("ddlTypology") as DropDownList;
+            int typologyId = int.Parse(ddlTypology.SelectedValue);
+
             using (SystemContext entities = new SystemContext())
             {
                 webapp.Models.System system = (from c in entities.Systems
@@ -84,6 +87,7 @@ namespace net_webform
                 system.InsertionDate = DateTime.Parse(insertionDate);
                 system.ChangedDate = DateTime.Parse(changedDate);
                 system.Notes = notes;
+                system.TypologyId = typologyId;
 
                 entities.SaveChanges();
             }

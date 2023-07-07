@@ -2,7 +2,7 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
-    <main>
+    <main class="container">
         <%--Griglia per Edit e Delete--%>
         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="false" DataKeyNames="Id" OnRowEditing="Edit" OnRowCancelingEdit="CancelingEdit"
     OnRowUpdating="Update" OnRowDeleting="Delete" EmptyDataText="No records have been added.">
@@ -57,7 +57,10 @@
                         <asp:Label ID="lblTypology" runat="server" Text='<%# Eval("Typology") %>'></asp:Label>
                     </ItemTemplate>
                     <EditItemTemplate>
-                        <asp:TextBox ID="txtTypology" runat="server" Text='<%# Eval("Typology") %>'></asp:TextBox>
+                        <asp:DropDownList ID="ddlTypology" runat="server" Width="140">
+                        <asp:ListItem Text="Dockstation" Value="1"></asp:ListItem>
+                        <asp:ListItem Text="Workstation" Value="2"></asp:ListItem>
+                    </asp:DropDownList>
                     </EditItemTemplate>
                 </asp:TemplateField>
 
