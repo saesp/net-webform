@@ -39,6 +39,10 @@ namespace net_webform
                 webapp.Models.System system = new webapp.Models.System
                 {
                     Name = txtName.Text,
+                    OrderDate = DateTime.Parse(txtOrderDate.Text),
+                    InsertionDate = DateTime.Parse(txtInsertionDate.Text),
+                    ChangedDate = DateTime.Parse(txtChangedDate.Text),
+                    Notes = txtNotes.Text,
                 };
                 entities.Systems.Add(system);
                 entities.SaveChanges();
