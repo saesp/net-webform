@@ -3,8 +3,48 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
     <main class="container">
+        <%--Griglia per Create--%>
+        <table class="mb-5" border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse">
+            <tr>
+                <td style="width: 150px">
+                    Name:<br />
+                    <asp:TextBox ID="txtName" runat="server" Width="140" />
+                </td>
+                <td style="width: 150px">
+                    OrderDate:<br /> 
+                    <asp:TextBox Id="txtOrderDate" runat="server" Width="140" />
+                </td>
+                <td style="width: 150px">
+                    InsertionDate:<br />
+                    <asp:TextBox Id="txtInsertionDate" runat="server" Width="140" />
+                </td>
+                <td style="width: 150px">
+                    ChangedDate:<br />
+                    <asp:TextBox Id="txtChangedDate" runat="server" Width="140" />
+                </td>
+                <td style="width: 150px">
+                    Notes:<br />
+                    <asp:TextBox Id="txtNotes" runat="server" Width="140" />
+                </td>
+                
+                <td style="width: 150px">
+                    Typology:<br>
+                    <asp:DropDownList ID="ddlTypology" runat="server" Width="140">
+                        <asp:ListItem Text="Dockstation" Value="1"></asp:ListItem>
+                        <asp:ListItem Text="Workstation" Value="2"></asp:ListItem>
+                    </asp:DropDownList>
+                </td>
+
+                <td style="width: 100px">
+                    <br />
+                    <asp:Button ID="btnAdd" runat="server" Text="Add" OnClick="Create" />
+                </td>
+            </tr>
+        </table>
+
+
         <%--Griglia per Edit e Delete--%>
-        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="false" DataKeyNames="Id" OnRowEditing="Edit" OnRowCancelingEdit="CancelingEdit"
+        <asp:GridView Id="GridView1" runat="server" AutoGenerateColumns="false" DataKeyNames="Id" OnRowEditing="Edit" OnRowCancelingEdit="CancelingEdit"
     OnRowUpdating="Update" OnRowDeleting="Delete" EmptyDataText="No records have been added.">
             <Columns>
                 <asp:TemplateField HeaderText="Name" ItemStyle-Width="150">
@@ -65,48 +105,11 @@
                 </asp:TemplateField>
 
 
-                <asp:CommandField ButtonType="Link" ShowEditButton="true" ShowDeleteButton="true" ItemStyle-Width="150"/>
+                <asp:CommandField ButtonType="Button" ShowEditButton="true" ShowDeleteButton="true" ItemStyle-Width="150"/>
             </Columns>
         </asp:GridView>
 
 
-        <%--Griglia per Create--%>
-        <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse">
-            <tr>
-                <td style="width: 150px">
-                    Name:<br />
-                    <asp:TextBox ID="txtName" runat="server" Width="140" />
-                </td>
-                <td style="width: 150px">
-                    OrderDate:<br /> 
-                    <asp:TextBox Id="txtOrderDate" runat="server" Width="140" />
-                </td>
-                <td style="width: 150px">
-                    InsertionDate:<br />
-                    <asp:TextBox Id="txtInsertionDate" runat="server" Width="140" />
-                </td>
-                <td style="width: 150px">
-                    ChangedDate:<br />
-                    <asp:TextBox Id="txtChangedDate" runat="server" Width="140" />
-                </td>
-                <td style="width: 150px">
-                    Notes:<br />
-                    <asp:TextBox Id="txtNotes" runat="server" Width="140" />
-                </td>
-                
-                <td style="width: 150px">
-                    Typology:<br>
-                    <asp:DropDownList ID="ddlTypology" runat="server" Width="140">
-                        <asp:ListItem Text="Dockstation" Value="1"></asp:ListItem>
-                        <asp:ListItem Text="Workstation" Value="2"></asp:ListItem>
-                    </asp:DropDownList>
-                </td>
-
-                <td style="width: 100px">
-                    <asp:Button ID="btnAdd" runat="server" Text="Add" OnClick="Create" />
-                </td>
-            </tr>
-        </table>
     </main>
 
 </asp:Content>
