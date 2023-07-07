@@ -53,7 +53,7 @@ namespace net_webform
         }
 
 
-        // UPDATE
+        //UPDATE
         protected void Edit(object sender, GridViewEditEventArgs e)
         {
             GridView1.EditIndex = e.NewEditIndex;
@@ -96,14 +96,16 @@ namespace net_webform
         }
 
 
+        //DELETE
         protected void Delete(object sender, GridViewDeleteEventArgs e)
         {
-            int systemId = Convert.ToInt32(GridView1.DataKeys[e.RowIndex].Values[0]);
+            int id = Convert.ToInt32(GridView1.DataKeys[e.RowIndex].Values[0]);
             using (SystemContext entities = new SystemContext())
             {
                 webapp.Models.System system = (from c in entities.Systems
-                                     where c.Id == systemId
+                                     where c.Id == id
                                      select c).FirstOrDefault();
+
                 entities.Systems.Remove(system);
                 entities.SaveChanges();
             }
