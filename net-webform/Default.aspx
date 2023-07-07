@@ -3,42 +3,62 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
     <main>
-        <section class="row" aria-labelledby="aspnetTitle">
-            <h1 id="aspnetTitle">ASP.NET</h1>
-            <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
-            <p><a href="http://www.asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
-        </section>
+        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="false" DataKeyNames="Id" OnRowEditing="Edit" OnRowCancelingEdit="CancelingEdit"
+    OnRowUpdating="Update" OnRowDeleting="Delete" EmptyDataText="No records have been added.">
+            <Columns>
+                <%--<asp:BoundField DataField="Id" HeaderText="ID" />--%>
+                <asp:BoundField DataField="Name" HeaderText="Name" ItemStyle-Width="150" />
+                <asp:BoundField DataField="OrderDate" HeaderText="Order Date" DataFormatString="{0:yyyy-MM-dd}" />
+                <asp:BoundField DataField="InsertionDate" HeaderText="Insertion Date" DataFormatString="{0:yyyy-MM-dd}" />
+                <asp:BoundField DataField="ChangedDate" HeaderText="Changed Date" DataFormatString="{0:yyyy-MM-dd}" />
+                <asp:BoundField DataField="Notes" HeaderText="Notes" ItemStyle-Width="300" />
+                <asp:CommandField ButtonType="Link" ShowEditButton="true" ShowDeleteButton="true" ItemStyle-Width="150" />
+            </Columns>
+        </asp:GridView>
 
-        <div class="row">
-            <section class="col-md-4" aria-labelledby="gettingStartedTitle">
-                <h2 id="gettingStartedTitle">Getting started</h2>
-                <p>
-                    ASP.NET Web Forms lets you build dynamic websites using a familiar drag-and-drop, event-driven model.
-                A design surface and hundreds of controls and components let you rapidly build sophisticated, powerful UI-driven sites with data access.
-                </p>
-                <p>
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301948">Learn more &raquo;</a>
-                </p>
-            </section>
-            <section class="col-md-4" aria-labelledby="librariesTitle">
-                <h2 id="librariesTitle">Get more libraries</h2>
-                <p>
-                    NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.
-                </p>
-                <p>
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301949">Learn more &raquo;</a>
-                </p>
-            </section>
-            <section class="col-md-4" aria-labelledby="hostingTitle">
-                <h2 id="hostingTitle">Web Hosting</h2>
-                <p>
-                    You can easily find a web hosting company that offers the right mix of features and price for your applications.
-                </p>
-                <p>
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301950">Learn more &raquo;</a>
-                </p>
-            </section>
-        </div>
+        <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse">
+            <tr>
+                <%--<th>ID</th>--%>
+                <th>Name</th>
+                <th>Order Date</th>
+                <th>Insertion Date</th>
+                <th>Changed Date</th>
+                <th>Notes</th>
+                <th>Typology</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            <tr>
+                <td>
+                    <asp:TextBox ID="txtId" runat="server" Width="80" />
+                </td>
+                <td>
+                    <asp:TextBox ID="txtName" runat="server" Width="140" />
+                </td>
+                <td>
+                    <asp:TextBox ID="txtOrderDate" runat="server" Width="100" />
+                </td>
+                <td>
+                    <asp:TextBox ID="txtInsertionDate" runat="server" Width="100" />
+                </td>
+                <td>
+                    <asp:TextBox ID="txtChangedDate" runat="server" Width="100" />
+                </td>
+                <td>
+
+                    <asp:TextBox ID="txtNotes" runat="server" Width="200" />
+                </td>
+                <td>
+                    <asp:TextBox ID="txtTypology" runat="server" Width="100" />
+                </td>
+                <td>
+                    <asp:Button ID="btnEdit" runat="server" Text="Edit" CommandArgument='<%# Eval("Id") %>' />
+                </td>
+                <td>
+                    <asp:Button ID="btnDelete" runat="server" Text="Delete" CommandArgument='<%# Eval("Id") %>' />
+                </td>
+            </tr>
+        </table>
     </main>
 
 </asp:Content>
