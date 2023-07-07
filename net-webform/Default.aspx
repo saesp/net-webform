@@ -51,6 +51,16 @@
                         <asp:TextBox ID="txtNotes" runat="server" Text='<%# Eval("Notes") %>'></asp:TextBox>
                     </EditItemTemplate>
                 </asp:TemplateField>
+                
+                <asp:TemplateField HeaderText="Typology" ItemStyle-Width="150">
+                    <ItemTemplate>
+                        <asp:Label ID="lblTypology" runat="server" Text='<%# Eval("Typology") %>'></asp:Label>
+                    </ItemTemplate>
+                    <EditItemTemplate>
+                        <asp:TextBox ID="txtTypology" runat="server" Text='<%# Eval("Typology") %>'></asp:TextBox>
+                    </EditItemTemplate>
+                </asp:TemplateField>
+
 
                 <asp:CommandField ButtonType="Link" ShowEditButton="true" ShowDeleteButton="true" ItemStyle-Width="150"/>
             </Columns>
@@ -79,6 +89,14 @@
                 <td style="width: 150px">
                     Notes:<br />
                     <asp:TextBox Id="txtNotes" runat="server" Width="140" />
+                </td>
+                
+                <td style="width: 150px">
+                    Typology:<br>
+                    <asp:DropDownList ID="ddlTypology" runat="server" Width="140">
+                        <asp:ListItem Text="Dockstation" Value="1"></asp:ListItem>
+                        <asp:ListItem Text="Workstation" Value="2"></asp:ListItem>
+                    </asp:DropDownList>
                 </td>
 
                 <td style="width: 100px">

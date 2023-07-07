@@ -25,8 +25,8 @@ namespace net_webform
         {
             using (SystemContext entities = new SystemContext())
             {
-                var systems = entities.Systems.ToList(); // Esegue la query e ottiene i risultati come lista
-                GridView1.DataSource = systems; // Imposta la lista come origine dati per il GridView
+                var systems = entities.Systems.ToList(); //esegue la query e ottiene i risultati come lista
+                GridView1.DataSource = systems; //imposta la lista come origine dati per il GridView
                 GridView1.DataBind();
             }
         }
@@ -45,7 +45,10 @@ namespace net_webform
                     InsertionDate = DateTime.Parse(txtInsertionDate.Text),
                     ChangedDate = DateTime.Parse(txtChangedDate.Text),
                     Notes = txtNotes.Text,
+                    //relazione one to many
+                    TypologyId = int.Parse(ddlTypology.SelectedValue) // Assegna l'ID della tipologia selezionata
                 };
+
                 entities.Systems.Add(system);
                 entities.SaveChanges();
             }
