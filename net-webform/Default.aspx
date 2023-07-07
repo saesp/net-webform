@@ -3,6 +3,7 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
     <main>
+        <%--Griglia per Edit e Delete--%>
         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="false" DataKeyNames="Id" OnRowEditing="Edit" OnRowCancelingEdit="CancelingEdit"
     OnRowUpdating="Update" OnRowDeleting="Delete" EmptyDataText="No records have been added.">
             <Columns>
@@ -14,6 +15,7 @@
                         <asp:TextBox ID="txtName" runat="server" Text='<%# Eval("Name") %>'></asp:TextBox>
                     </EditItemTemplate>
                 </asp:TemplateField>
+
                 <asp:TemplateField HeaderText="OrderDate" ItemStyle-Width="150">
                     <ItemTemplate>
                         <asp:Label ID="lblOrderDate" runat="server" Text='<%# Eval("OrderDate") %>'></asp:Label>
@@ -22,6 +24,7 @@
                         <asp:TextBox ID="txtOrderDate" runat="server" Text='<%# Eval("OrderDate") %>'></asp:TextBox>
                     </EditItemTemplate>
                 </asp:TemplateField>
+
                 <asp:TemplateField HeaderText="InsertionDate" ItemStyle-Width="150">
                     <ItemTemplate>
                         <asp:Label ID="lblInsertionDate" runat="server" Text='<%# Eval("InsertionDate") %>'></asp:Label>
@@ -30,6 +33,7 @@
                         <asp:TextBox ID="txtInsertionDate" runat="server" Text='<%# Eval("InsertionDate") %>'></asp:TextBox>
                     </EditItemTemplate>
                 </asp:TemplateField>
+
                 <asp:TemplateField HeaderText="ChangedDate" ItemStyle-Width="150">
                     <ItemTemplate>
                         <asp:Label ID="lblChangedDate" runat="server" Text='<%# Eval("ChangedDate") %>'></asp:Label>
@@ -38,6 +42,7 @@
                         <asp:TextBox ID="txtChangedDate" runat="server" Text='<%# Eval("ChangedDate") %>'></asp:TextBox>
                     </EditItemTemplate>
                 </asp:TemplateField>
+
                 <asp:TemplateField HeaderText="Notes" ItemStyle-Width="150">
                     <ItemTemplate>
                         <asp:Label ID="lblNotes" runat="server" Text='<%# Eval("Notes") %>'></asp:Label>
@@ -52,6 +57,7 @@
         </asp:GridView>
 
 
+        <%--Griglia per Create--%>
         <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse">
             <tr>
                 <td style="width: 150px">
