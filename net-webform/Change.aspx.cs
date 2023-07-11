@@ -21,13 +21,17 @@ namespace net_webform
             }
         }
 
+        
+
+        //READ
         private void BindGrid()
         {
             using (SystemContext entities = new SystemContext())
             {
-                var systems = entities.Systems.ToList(); //esegue la query e ottiene i risultati come lista
-                GridView1.DataSource = systems; //imposta la lista come origine dati per il GridView
-                GridView1.DataBind();
+                var systems = entities.Systems.Include(s => s.Typology).ToList(); //esegue la query e ottiene i risultati come lista includendo anche typology 
+
+                GridView1.DataSource = systems; //imposta la lista come DataSource per il GridView
+                GridView1.DataBind(); //associa i dati dalla lista al controllo GridView e li visualizza nella griglia
             }
         }
 
@@ -56,6 +60,7 @@ namespace net_webform
         }
 
 
+
         //UPDATE
         protected void Edit(object sender, GridViewEditEventArgs e)
         {
@@ -81,7 +86,7 @@ namespace net_webform
             {
                 webapp.Models.System system = (from c in entities.Systems
                                                where c.Id == id
-                                               select c).FirstOrDefault();
+                                               select c).Include(s => s.Typology).FirstOrDefault();
                 system.Name = name;
                 system.OrderDate = DateTime.Parse(orderDate);
                 system.InsertionDate = DateTime.Parse(insertionDate);
@@ -101,6 +106,7 @@ namespace net_webform
             GridView1.EditIndex = -1;
             this.BindGrid();
         }
+
 
 
         //DELETE

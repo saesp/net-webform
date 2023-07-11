@@ -14,6 +14,7 @@ namespace webapp.Models
         [Required]
         public string Name { get; set; }
 
+        //one-to-many relation with System
         public List<System> Systems { get; set; }
 
 

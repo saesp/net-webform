@@ -9,14 +9,11 @@ namespace webapp.Models
 {
     public class System
     {
-
         [Key]
         public int Id { get; set; }
 
-
         [Required, StringLength(100)]
         public string Name { get; set; }
-
 
         [Required]
         public DateTime OrderDate { get; set; }
@@ -27,12 +24,11 @@ namespace webapp.Models
         [Required]
         public DateTime ChangedDate { get; set; }
 
-
-        [Required, StringLength(1000)]
+        [StringLength(1000)]
         public string Notes { get; set; }
 
 
-        //one to many rel. with Typology
+        //many-to-one relation with Typology
         public int? TypologyId { get; set; }
 
         public Typology Typology { get; set; }

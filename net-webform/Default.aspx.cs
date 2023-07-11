@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -15,7 +16,7 @@ namespace net_webform
             if (!this.IsPostBack)
             {
                 this.BindGrid();
-                }
+            }
         }
 
         //READ
@@ -23,7 +24,7 @@ namespace net_webform
         {
             using (SystemContext entities = new SystemContext())
             {
-                var systems = entities.Systems.ToList(); //esegue la query e ottiene i risultati come lista
+                var systems = entities.Systems.Include(s => s.Typology).ToList(); //esegue la query e ottiene i risultati come lista
                 GridView.DataSource = systems; //imposta la lista come origine dati per il GridView
                 GridView.DataBind();
             }

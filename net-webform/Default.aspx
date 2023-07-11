@@ -24,7 +24,7 @@
                                 <td><%# Eval("InsertionDate") %></td>
                                 <td><%# Eval("ChangedDate") %></td>
                                 <td><%# Eval("Notes") %></td>
-                                <td><%# Eval("TypologyId") %></td>
+                                <td><%# Eval("Typology.Name") %></td>
                             </tr>
                         </ItemTemplate>
                     </asp:Repeater>

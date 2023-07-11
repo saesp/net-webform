@@ -7,19 +7,19 @@
         <table class="mb-5" border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse">
             <tr>
                 <td style="width: 150px">
-                    Name:<br />
+                    Name:*<br />
                     <asp:TextBox ID="txtName" runat="server" Width="140" />
                 </td>
                 <td style="width: 150px">
-                    OrderDate:<br /> 
+                    OrderDate:*<br /> 
                     <asp:TextBox Id="txtOrderDate" runat="server" Width="140" />
                 </td>
                 <td style="width: 150px">
-                    InsertionDate:<br />
+                    InsertionDate:*<br />
                     <asp:TextBox Id="txtInsertionDate" runat="server" Width="140" />
                 </td>
                 <td style="width: 150px">
-                    ChangedDate:<br />
+                    ChangedDate:*<br />
                     <asp:TextBox Id="txtChangedDate" runat="server" Width="140" />
                 </td>
                 <td style="width: 150px">
@@ -28,7 +28,7 @@
                 </td>
                 
                 <td style="width: 150px">
-                    Typology:<br>
+                    Typology:*<br>
                     <asp:DropDownList ID="ddlTypology" runat="server" Width="140">
                         <asp:ListItem Text="Dockstation" Value="1"></asp:ListItem>
                         <asp:ListItem Text="Workstation" Value="2"></asp:ListItem>
@@ -44,7 +44,7 @@
 
 
         <%--Griglia per Edit e Delete--%>
-        <asp:GridView Id="GridView1" runat="server" AutoGenerateColumns="false" DataKeyNames="Id" OnRowEditing="Edit" OnRowCancelingEdit="CancelingEdit"
+        <asp:GridView Id="GridView1" CssClass="table table-striped" runat="server" AutoGenerateColumns="false" DataKeyNames="Id" OnRowEditing="Edit" OnRowCancelingEdit="CancelingEdit"
     OnRowUpdating="Update" OnRowDeleting="Delete" EmptyDataText="No records have been added.">
             <Columns>
                 <asp:TemplateField HeaderText="Name" ItemStyle-Width="150">
@@ -94,7 +94,7 @@
                 
                 <asp:TemplateField HeaderText="Typology" ItemStyle-Width="150">
                     <ItemTemplate>
-                        <asp:Label ID="lblTypology" runat="server" Text='<%# Eval("TypologyId") %>'></asp:Label>
+                        <asp:Label ID="lblTypology" runat="server" Text='<%# Eval("Typology.Name") %>'></asp:Label>
                     </ItemTemplate>
                     <EditItemTemplate>
                         <asp:DropDownList ID="ddlTypology" runat="server" Width="140">
