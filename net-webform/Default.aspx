@@ -5,7 +5,7 @@
     <main class="container">
 
         <%--Finestra popup modale--%>
-        <asp:Button ID="ClientButton" CssClass="mb-3" runat="server" Text="Add" />
+        <asp:Button ID="ClientButton" CssClass="mb-3 btn btn-dark" runat="server" Text="Add" />
 
         <asp:Panel ID="ModalPanel" CssClass="bg-dark rounded-4 p-3" runat="server" Width="500px">
              <%--Table Create--%>
@@ -46,13 +46,13 @@
                 
                     <td style="width: 100px">
                         <br />
-                        <asp:Button ID="btnAdd" runat="server" Text="Add" OnClick="Create" />
+                        <asp:Button ID="btnAdd" CssClass="btn btn-outline-success" runat="server" Text="Add" OnClick="Create" />
                     </td>
                 </tr>
             </table>
 
             <br />
-             <asp:Button ID="OKButton" CssClass="" runat="server" Text="Close" />
+             <asp:Button ID="OKButton" CssClass="btn btn-outline-danger" runat="server" Text="Close" />
         </asp:Panel>
 
         <ajaxToolkit:ModalPopupExtender ID="mpe" runat="server" TargetControlId="ClientButton" PopupControlID="ModalPanel" OkControlID="OKButton" />
@@ -120,7 +120,15 @@
                     </EditItemTemplate>
                 </asp:TemplateField>
 
-                <asp:CommandField ButtonType="Button" ShowEditButton="true" ShowDeleteButton="true" ItemStyle-Width="150"/>
+                <asp:TemplateField HeaderText="Actions" ItemStyle-Width="150">
+                <ItemTemplate>
+                    <asp:Button ID="btnEdit" runat="server" CssClass="btn btn-outline-dark" Text="Edit" CommandName="Edit" />
+                    <asp:Button ID="btnDelete" runat="server" CssClass="btn btn-outline-danger" Text="Delete" CommandName="Delete" OnClientClick="return confirm('Are you sure you want to delete this item?');" />
+                </ItemTemplate>
+                </asp:TemplateField>
+
+
+                <%--<asp:CommandField ButtonType="Button" ShowEditButton="true" ShowDeleteButton="true" ItemStyle-Width="150"/>--%>
             </Columns>
         </asp:GridView>
     </main>
