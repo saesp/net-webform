@@ -21,7 +21,7 @@ namespace net_webform
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ClientButton;
+        protected global::System.Web.UI.WebControls.LinkButton ClientButton;
 
         /// <summary>
         /// ModalPanel control.
@@ -31,6 +31,15 @@ namespace net_webform
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel ModalPanel;
+
+        /// <summary>
+        /// OKButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton OKButton;
 
         /// <summary>
         /// txtName control.
@@ -93,16 +102,7 @@ namespace net_webform
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAdd;
-
-        /// <summary>
-        /// OKButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button OKButton;
+        protected global::System.Web.UI.WebControls.LinkButton btnAdd;
 
         /// <summary>
         /// mpe control.

@@ -4,13 +4,23 @@
 
     <main class="container">
 
-        <%--Finestra popup modale--%>
-        <asp:Button ID="ClientButton" CssClass="mb-3 btn btn-dark" runat="server" Text="Add" />
+        <%--FINESTRA POPUP MODALE--%>
 
+        <%--Button per aprire--%>
+        <asp:LinkButton ID="ClientButton" CssClass="my-3 btn btn-dark" runat="server">
+            <i class="fa-solid fa-plus"></i> Add
+        </asp:LinkButton>  <%--Modo alternativo:  <asp:Button ID="ClientButton" CssClass="mb-3 btn btn-dark" runat="server" Text="Add" />--%>
+
+        <%--Contenuto finestra--%>
         <asp:Panel ID="ModalPanel" CssClass="bg-dark rounded-4 p-3" runat="server" Width="500px">
+            <%--Button close--%>
+            <asp:LinkButton ID="OKButton" CssClass="btn btn-outline-danger mb-3" runat="server">
+                <i class="fa-solid fa-xmark"></i>
+            </asp:LinkButton>
+
              <%--Table Create--%>
             <table class="mb-5 m-auto" border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse">
-                <tr class="d-flex flex-column justify-content-center text-white">
+                <tr class="d-flex flex-column justify-content-center gap-2 text-white">
                     <td style="width: 150px">
                         Name:*<br />
                         <asp:TextBox ID="txtName" runat="server" Width="140" />
@@ -43,16 +53,16 @@
                             <asp:ListItem Text="Workstation" Value="2"></asp:ListItem>
                         </asp:DropDownList>
                     </td>
-                
-                    <td style="width: 100px">
-                        <br />
-                        <asp:Button ID="btnAdd" CssClass="btn btn-outline-success" runat="server" Text="Add" OnClick="Create" />
-                    </td>
                 </tr>
-            </table>
 
-            <br />
-             <asp:Button ID="OKButton" CssClass="btn btn-outline-danger" runat="server" Text="Close" />
+                <%--Button add--%>
+                <td style="width: 100px">
+                    <br />
+                    <asp:LinkButton ID="btnAdd" CssClass="btn btn-success" runat="server" OnClick="Create">
+                        <i class="fa-solid fa-check"></i>
+                    </asp:LinkButton>
+                </td>
+            </table>
         </asp:Panel>
 
         <ajaxToolkit:ModalPopupExtender ID="mpe" runat="server" TargetControlId="ClientButton" PopupControlID="ModalPanel" OkControlID="OKButton" />
@@ -120,15 +130,20 @@
                     </EditItemTemplate>
                 </asp:TemplateField>
 
-                <asp:TemplateField HeaderText="Actions" ItemStyle-Width="150">
-                <ItemTemplate>
-                    <asp:Button ID="btnEdit" runat="server" CssClass="btn btn-outline-dark" Text="Edit" CommandName="Edit" />
-                    <asp:Button ID="btnDelete" runat="server" CssClass="btn btn-outline-danger" Text="Delete" CommandName="Delete" OnClientClick="return confirm('Are you sure you want to delete this item?');" />
-                </ItemTemplate>
-                </asp:TemplateField>
+                <%--buttons Edit e Delete--%>
+                <%--<asp:TemplateField HeaderText="Actions" ItemStyle-Width="150">
+                    <ItemTemplate>
+                        <asp:LinkButton ID="btnEdit" runat="server" CssClass="btn btn-outline-dark" CommandName="Edit" ToolTip="Edit">
+                            <i class="fas fa-edit"></i>
+                        </asp:LinkButton>
+                        <asp:LinkButton ID="btnDelete" runat="server" CssClass="btn btn-outline-danger" CommandName="Delete" ToolTip="Delete" OnClientClick="return confirm('Are you sure you want to delete this item?');">
+                            <i class="fas fa-trash"></i>
+                        </asp:LinkButton>
+                    </ItemTemplate>
+                </asp:TemplateField>--%>
 
 
-                <%--<asp:CommandField ButtonType="Button" ShowEditButton="true" ShowDeleteButton="true" ItemStyle-Width="150"/>--%>
+                <asp:CommandField ButtonType="Button" ShowEditButton="true" ShowDeleteButton="true" ItemStyle-Width="150"/>
             </Columns>
         </asp:GridView>
     </main>
