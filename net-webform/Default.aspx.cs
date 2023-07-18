@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AjaxControlToolkit;
+using AjaxControlToolkit.HtmlEditor.Popups;
+using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Security;
@@ -12,6 +14,7 @@ namespace net_webform
 {
     public partial class _Default : Page
     {
+        //protected ModalPopupExtender popup;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -62,10 +65,19 @@ namespace net_webform
 
 
         //UPDATE
-        protected void Edit(object sender, GridViewEditEventArgs e)
+        protected void Edit(object sender, EventArgs e)
         {
-            GridView1.EditIndex = e.NewEditIndex;
-            this.BindGrid();
+                using (GridViewRow row = (GridViewRow)((LinkButton)sender).Parent.Parent)
+                {
+                    txtNameEdit.Text = row.Cells[0].Text;
+                    txtOrderDateEdit.Text = row.Cells[1].Text;
+                    txtInsertionDateEdit.Text = row.Cells[2].Text;
+                    txtChangedDateEdit.Text = row.Cells[3].Text;
+                    txtNotesEdit.Text = row.Cells[4].Text;
+                    typologyEdit.Text = row.Cells[5].Text;
+                    popup.Show();
+                }
+            
         }
 
         protected void Update(object sender, GridViewUpdateEventArgs e)
@@ -98,6 +110,12 @@ namespace net_webform
             }
             GridView1.EditIndex = -1;
             this.BindGrid();
+        }
+
+        protected void UpdateEventHandler(object sender, EventArgs e)
+        {
+            GridViewUpdateEventArgs args = new GridViewUpdateEventArgs(GridView1.EditIndex);
+            Update(sender, args);
         }
 
         protected void CancelingEdit(object sender, EventArgs e) //metodo per gestire l'evento di annullamento della modifica di una riga della griglia

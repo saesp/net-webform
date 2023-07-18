@@ -14,49 +14,59 @@
         <%--Contenuto finestra--%>
         <asp:Panel ID="ModalPanel" CssClass="bg-dark rounded-4 p-3" runat="server" Width="500px">
             <%--Button close--%>
-            <asp:LinkButton ID="OKButton" CssClass="btn btn-outline-danger mb-3" runat="server">
+            <asp:LinkButton ID="OKButton" CssClass="btn btn-outline-danger border-0 mb-2" runat="server">
                 <i class="fa-solid fa-xmark"></i>
             </asp:LinkButton>
 
              <%--Table Create--%>
             <table class="mb-5 m-auto" border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse">
-                <tr class="d-flex flex-column justify-content-center gap-2 text-white">
-                    <td style="width: 150px">
+                <tr class="d-flex flex-column justify-content-center text-white" style="width: 213px">
+                    <td>
                         Name:*<br />
-                        <asp:TextBox ID="txtName" runat="server" Width="140" />
+                        <asp:TextBox ID="txtName" runat="server" /> <br />
+                        <asp:RequiredFieldValidator ID="rfvName" runat="server" CssClass="text-danger" ControlToValidate="txtName" ErrorMessage="Please enter a name." />
                     </td>
-                
-                    <td style="width: 150px">
+
+                    <td>
                         OrderDate:*<br /> 
-                        <asp:TextBox Id="txtOrderDate" runat="server" Width="140" />
+                        <asp:TextBox ID="txtOrderDate" runat="server" /> <br />
+                        <asp:RequiredFieldValidator ID="rfvOrderDate" runat="server" CssClass="text-danger" ControlToValidate="txtOrderDate" ErrorMessage="Please enter an order date." />
+                        <%--<asp:CompareValidator ID="cvOrderDate" runat="server" CssClass="text-danger" ControlToValidate="txtOrderDate" Operator="DataTypeCheck" Type="Date" ErrorMessage="Please enter a valid order date." />--%>
                     </td>
-                
-                    <td style="width: 150px">
+
+                    <td>
                         InsertionDate:*<br />
-                        <asp:TextBox Id="txtInsertionDate" runat="server" Width="140" />
+                        <asp:TextBox ID="txtInsertionDate" runat="server" /> <br />
+                        <asp:RequiredFieldValidator ID="rfvInsertionDate" runat="server" CssClass="text-danger" ControlToValidate="txtInsertionDate" ErrorMessage="Please enter an insertion date." />
                     </td>
-                
-                    <td style="width: 150px">
+
+                    <td>
                         ChangedDate:*<br />
-                        <asp:TextBox Id="txtChangedDate" runat="server" Width="140" />
+                        <asp:TextBox ID="txtChangedDate" runat="server" /> <br />
+                        <asp:RequiredFieldValidator ID="rfvChangedDate" runat="server" CssClass="text-danger" ControlToValidate="txtChangedDate" ErrorMessage="Please enter a changed date." />
                     </td>
-                
-                    <td style="width: 150px">
+
+                    <td>
                         Notes:<br />
-                        <asp:TextBox Id="txtNotes" runat="server" Width="140" />
+                        <asp:TextBox ID="txtNotes" runat="server" />
                     </td>
-                
-                    <td style="width: 150px">
+
+                    <br>
+
+                    <td class="mt-4">
                         Typology:*<br>
-                        <asp:DropDownList ID="ddlTypology" runat="server" Width="140">
+                        <asp:DropDownList ID="ddlTypology" runat="server">
                             <asp:ListItem Text="Dockstation" Value="1"></asp:ListItem>
                             <asp:ListItem Text="Workstation" Value="2"></asp:ListItem>
                         </asp:DropDownList>
+                        <%--<asp:RequiredFieldValidator ID="rfvTypology" runat="server" CssClass="text-danger" ControlToValidate="ddlTypology" ErrorMessage="Please select a typology." />--%>
                     </td>
+
                 </tr>
 
+
                 <%--Button add--%>
-                <td style="width: 100px">
+                <td>
                     <br />
                     <asp:LinkButton ID="btnAdd" CssClass="btn btn-success" runat="server" OnClick="Create">
                         <i class="fa-solid fa-check"></i>
@@ -68,84 +78,124 @@
         <ajaxToolkit:ModalPopupExtender ID="mpe" runat="server" TargetControlId="ClientButton" PopupControlID="ModalPanel" OkControlID="OKButton" />
 
 
+        <%--<asp:UpdatePanel ID="UpdatePanel1" runat="server">--%>
+            <%--<ContentTemplate>--%>
 
-        <%--Griglia Read + Edit e Delete--%>
-        <asp:GridView Id="GridView1" CssClass="table table-striped" runat="server" AutoGenerateColumns="false" DataKeyNames="Id" OnRowEditing="Edit" OnRowCancelingEdit="CancelingEdit"
-    OnRowUpdating="Update" OnRowDeleting="Delete" EmptyDataText="No records have been added.">
-            <Columns>
-                <asp:TemplateField HeaderText="Name" ItemStyle-Width="150">
-                    <ItemTemplate>
-                        <asp:Label ID="lblName" runat="server" Text='<%# Eval("Name") %>'></asp:Label>
-                    </ItemTemplate>
-                    <EditItemTemplate>
-                        <asp:TextBox ID="txtName" runat="server" Text='<%# Eval("Name") %>'></asp:TextBox>
-                    </EditItemTemplate>
-                </asp:TemplateField>
+                <%--<asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="false" CssClass="table" PageSize="10" OnRowEditing="Edit" OnRowDeleting="Delete">--%>
+                <asp:GridView Id="GridView1" CssClass="table table-striped" runat="server" AutoGenerateColumns="false" DataKeyNames="Id" OnRowDeleting="Delete" EmptyDataText="No records have been added.">
+                    <Columns>
+                        <asp:BoundField DataField="Name" HeaderText="Name" HtmlEncode="true" />
+                        <asp:BoundField DataField="OrderDate" HeaderText="Order Date" HtmlEncode="true" />
+                        <asp:BoundField DataField="InsertionDate" HeaderText="Insertion Date" HtmlEncode="true" />
+                        <asp:BoundField DataField="ChangedDate" HeaderText="Changed Date" HtmlEncode="true" />
+                        <asp:BoundField DataField="Notes" HeaderText="Notes" HtmlEncode="true" />
+                        <asp:BoundField DataField="Typology.Name" HeaderText="Typology" HtmlEncode="true" />
+                        <asp:TemplateField ItemStyle-Width="30px" HeaderText="">
+                            <ItemTemplate>
+                            <div class="btn-group btn-group-sm">
+                            <asp:LinkButton ID="btnEdit" runat="server" CssClass="btn btn-primary" OnClick="Edit" CommandArgument='<%#Eval("Id")%>' ToolTip="Modifica" CausesValidation="false">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                            </asp:LinkButton>
+                            <asp:LinkButton ID="btnDelete" runat="server" CssClass="btn btn-danger" CommandName="Delete" CommandArgument='<%#Eval("Id") %>' ToolTip="Elimina" CausesValidation="false">
+                            <span class="glyphicon glyphicon-trash"></span>
+                            </asp:LinkButton>
+                                </ItemTemplate>
+                        </asp:TemplateField>
+                       <%--<asp:TemplateField ItemStyle-Width="30px" HeaderText="">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="lnkDelete" runat="server" CssClass="btn btn-outline-danger" CommandName="Delete" ToolTip="Delete" OnClientClick="return confirm('Are you sure you want to delete this item?');">
+                                    <i class="fas fa-trash"></i>
+                                </asp:LinkButton>
+                            </ItemTemplate>
+                        </asp:TemplateField>--%>
+                    </Columns>
+                </asp:GridView>
 
-                <asp:TemplateField HeaderText="Order Date" ItemStyle-Width="150">
-                    <ItemTemplate>
-                        <asp:Label ID="lblOrderDate" runat="server" Text='<%# Eval("OrderDate") %>'></asp:Label>
-                    </ItemTemplate>
-                    <EditItemTemplate>
-                        <asp:TextBox ID="txtOrderDate" runat="server" Text='<%# Eval("OrderDate") %>'></asp:TextBox>
-                    </EditItemTemplate>
-                </asp:TemplateField>
+                <asp:Panel ID="pnlAddEdit" runat="server" CssClass="modalPopup" style="display:none">
+                    <asp:Label Font-Bold="true" ID="Label4" runat="server" Text="System Details"></asp:Label>
+                    <br />
+                    <table align="center">
+                        <tr>
+                            <td>
+                                <asp:Label ID="LabelName" runat="server" Text="Name"></asp:Label>
+                            </td>
+                            <td>
+                                <asp:TextBox ID="txtNameEdit" runat="server"></asp:TextBox>
+                            </td>
+                        </tr>
 
-                <asp:TemplateField HeaderText="Insertion Date" ItemStyle-Width="150">
-                    <ItemTemplate>
-                        <asp:Label ID="lblInsertionDate" runat="server" Text='<%# Eval("InsertionDate") %>'></asp:Label>
-                    </ItemTemplate>
-                    <EditItemTemplate>
-                        <asp:TextBox ID="txtInsertionDate" runat="server" Text='<%# Eval("InsertionDate") %>'></asp:TextBox>
-                    </EditItemTemplate>
-                </asp:TemplateField>
+                        <tr>
+                            <td>
+                                <asp:Label ID="LabelOrderDate" runat="server" Text="Order Date"></asp:Label>
+                            </td>
+                            <td>
+                                <asp:TextBox ID="txtOrderDateEdit" runat="server"></asp:TextBox>
+                            </td>
+                        </tr>
 
-                <asp:TemplateField HeaderText="Changed Date" ItemStyle-Width="150">
-                    <ItemTemplate>
-                        <asp:Label ID="lblChangedDate" runat="server" Text='<%# Eval("ChangedDate") %>'></asp:Label>
-                    </ItemTemplate>
-                    <EditItemTemplate>
-                        <asp:TextBox ID="txtChangedDate" runat="server" Text='<%# Eval("ChangedDate") %>'></asp:TextBox>
-                    </EditItemTemplate>
-                </asp:TemplateField>
+                        <tr>
+                            <td>
+                                <asp:Label ID="LabelInsertDate" runat="server" Text="Insertion Date"></asp:Label>
+                            </td>
+                            <td>
+                                <asp:TextBox ID="txtInsertionDateEdit" runat="server"></asp:TextBox>
+                            </td>
+                        </tr>
 
-                <asp:TemplateField HeaderText="Notes" ItemStyle-Width="150">
-                    <ItemTemplate>
-                        <asp:Label ID="lblNotes" runat="server" Text='<%# Eval("Notes") %>'></asp:Label>
-                    </ItemTemplate>
-                    <EditItemTemplate>
-                        <asp:TextBox ID="txtNotes" runat="server" Text='<%# Eval("Notes") %>'></asp:TextBox>
-                    </EditItemTemplate>
-                </asp:TemplateField>
-                
-                <asp:TemplateField HeaderText="Typology" ItemStyle-Width="150">
-                    <ItemTemplate>
-                        <asp:Label ID="lblTypology" runat="server" Text='<%# Eval("Typology.Name") %>'></asp:Label>
-                    </ItemTemplate>
-                    <EditItemTemplate>
-                        <asp:DropDownList ID="ddlTypology" runat="server" Width="140">
-                        <asp:ListItem Text="Dockstation" Value="1"></asp:ListItem>
-                        <asp:ListItem Text="Workstation" Value="2"></asp:ListItem>
-                    </asp:DropDownList>
-                    </EditItemTemplate>
-                </asp:TemplateField>
+                        <tr>
+                            <td>
+                                <asp:Label ID="LabelChangedDate" runat="server" Text="Changed Date"></asp:Label>
+                            </td>
+                            <td>
+                                <asp:TextBox ID="txtChangedDateEdit" runat="server"></asp:TextBox>
+                            </td>
+                        </tr>
 
-                <%--buttons Edit e Delete--%>
-                <%--<asp:TemplateField HeaderText="Actions" ItemStyle-Width="150">
-                    <ItemTemplate>
-                        <asp:LinkButton ID="btnEdit" runat="server" CssClass="btn btn-outline-dark" CommandName="Edit" ToolTip="Edit">
-                            <i class="fas fa-edit"></i>
-                        </asp:LinkButton>
-                        <asp:LinkButton ID="btnDelete" runat="server" CssClass="btn btn-outline-danger" CommandName="Delete" ToolTip="Delete" OnClientClick="return confirm('Are you sure you want to delete this item?');">
-                            <i class="fas fa-trash"></i>
-                        </asp:LinkButton>
-                    </ItemTemplate>
-                </asp:TemplateField>--%>
+                        <tr>
+                            <td>
+                                <asp:Label ID="LabelNotes" runat="server" Text="Notes"></asp:Label>
+                            </td>
+                            <td>
+                                <asp:TextBox ID="txtNotesEdit" runat="server"></asp:TextBox>
+                            </td>
+                        </tr>
 
+                        <tr>
+                            <td>
+                                <asp:Label ID="LabelTypology" runat="server" Text="Typology"></asp:Label>
+                            </td>
+                            <td>
+                                <asp:DropDownList ID="typologyEdit" runat="server">
+                                    <asp:ListItem Text="Dockstation" Value="1"></asp:ListItem>
+                                    <asp:ListItem Text="Workstation" Value="2"></asp:ListItem>
+                                </asp:DropDownList>
+                            </td>
+                        </tr>
 
-                <asp:CommandField ButtonType="Button" ShowEditButton="true" ShowDeleteButton="true" ItemStyle-Width="150"/>
-            </Columns>
-        </asp:GridView>
+                        <tr>
+                            <td>
+                                <asp:Button ID="btnSave" runat="server" Text="Save" />
+                            </td>
+                            <td>
+                                <asp:Button ID="btnCancel" runat="server" Text="Cancel" />
+                            </td>
+                        </tr>
+                    </table>
+                </asp:Panel>
+
+                <asp:LinkButton ID="lnkFake" runat="server" Text=""></asp:LinkButton>
+
+                <ajaxToolkit:ModalPopupExtender ID="popup" runat="server" DropShadow="false" TargetControlID="lnkFake" PopupControlID="pnlAddEdit" BackgroundCssClass="modalBackground" />
+
+                <%--<cc1:ModalPopupExtender ID="popup" runat="server" DropShadow="false" PopupControlID="pnlAddEdit"
+                    TargetControlID="lnkFake" BackgroundCssClass="modalBackground">
+                </cc1:ModalPopupExtender>--%>
+
+            <%--</ContentTemplate>--%>
+
+        <%--</asp:UpdatePanel>--%>
+
     </main>
 
 </asp:Content>
+
